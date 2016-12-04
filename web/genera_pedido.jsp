@@ -53,20 +53,18 @@
                  <td>
                      <select name="cmb_Ciudades">
                         <option> Seleccionar </option>
-                        
-                            <option value="prueba">
-                                    prueba
-                            </option>
-                            
+                        <option value="prueba">prueba</option>
                     </select>
                  </td>
              </tr>
              <tr>
                  <td>
-                     <label style="color: white; font-size: 15px" for="inputPassword">Clave</label>
+                     <label style="color: white; font-size: 15px" for="inputPassword">Bebida</label>
                  </td>
                  <td>
-                     <input type="password" name="txtPassLog" id="inputPassword" class="form-control" placeholder="Ingrese Clave" required>
+                    <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 1</label>
+                    <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 2</label>
+                    <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 3</label> 
                  </td>
              </tr>
              <tr align="center">

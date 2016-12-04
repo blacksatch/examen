@@ -67,7 +67,7 @@
                      <label class="label2">Rut</label>
                  </td>
                  <td>
-                     <input type="text" name="txtRutReg" class="form-control" placeholder="Ingrese Rut" required autofocus>
+                     <input type="text" name="txtRutReg" class="form-singin" placeholder="Ingrese Rut" required autofocus>
                  </td>
                  <td class="asteriscoRojo">*</td>
              </tr>

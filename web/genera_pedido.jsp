@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : index
     Created on : 25-11-2016, 10:19:14 AM
@@ -47,25 +48,29 @@
                  </td>
              </tr>
              <tr>
-                 <td>
-                     <label style="color: white; font-size: 15px">Plato</label>
-                 </td>
-                 <td>
-                     <select name="cmb_Ciudades">
+                <td>
+                    <label style="color: white; font-size: 15px">Plato</label>
+                </td>
+                <td>
+                    <select name="cmb_Ciudades">
                         <option> Seleccionar </option>
-                        <option value="prueba">prueba</option>
+                        <c:forEach var="" items="">
+                            <option value="prueba">prueba</option>
+                        </c:forEach>
+                        
+                        
                     </select>
-                 </td>
+                </td>
              </tr>
              <tr>
-                 <td>
-                     <label style="color: white; font-size: 15px" for="inputPassword">Bebida</label>
-                 </td>
-                 <td>
-                    <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 1</label>
-                    <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 2</label>
-                    <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 3</label> 
-                 </td>
+                <td>
+                    <label style="color: white; font-size: 15px">Bebida</label>
+                </td>
+                <td>
+                    <c:forEach var="" items="">
+                        <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 1</label>
+                    </c:forEach>
+                </td>
              </tr>
              <tr align="center">
                  <td colspan="2">

@@ -47,6 +47,7 @@ public class ServletValidaUsuario extends HttpServlet {
             String passLog = request.getParameter("txtPassLog");
             String btnIngresar = request.getParameter("btnIngresar");
             String btnRegistrar = (String)request.getAttribute("btnRegistrar");
+            String btnRegistrar2 = request.getParameter("btnRegistrar2");
             RequestDispatcher dispatcher = null;
             HttpSession sesion =  request.getSession(true);
             
@@ -62,7 +63,7 @@ public class ServletValidaUsuario extends HttpServlet {
                         dispatcher.forward(request, response);
                     }
                 }
-            } else if (btnRegistrar != null) {
+            } else if (btnRegistrar != null || btnRegistrar2 != null) {
                 sesion.setAttribute("sesion_lista_comuna", ListaComunas());
                 dispatcher = getServletContext().getRequestDispatcher("/registro.jsp");
                 dispatcher.forward(request, response);

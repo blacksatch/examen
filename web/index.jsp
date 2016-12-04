@@ -67,18 +67,13 @@
                      <button name="btnIngresar" style="width: 100%" class="btn btn-lg btn-warning btn-block" type="submit">INGRESAR</button>
                  </td>
              </tr>
-             <tr>
-                 <td>
-                     <input type="button" name="btnRegistrar" class="bn btn-lg btn-link" />Registrar
-                 </td>
-             </tr>
         </table>  
      </form>
-     <form action="./ServletValidaUsuario" method="post">
+     <form action="./ServletValidaUsuario" method="get">
          <table align="center">
             <tr>
                  <td>
-                     <input type="submit" name="btnRegistrar" class="bn btn-lg btn-link" value="Registrar"/>
+                     <input type="submit" name="btnRegistrar2" class="bn btn-lg btn-link" value="Registrar"/>
                  </td>
              </tr>
          </table>

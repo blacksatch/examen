@@ -69,11 +69,10 @@
              </tr>
              <tr>
                  <td>
-                     <a href="registro.jsp"><button name="btnRegistrar" type="button" class="btn btn-lg btn-link">Registrar</button></a>
+                     <a href="./ServletValidaUsuario"><button name="btnRegistrar" type="submit" class="btn btn-lg btn-link btn-block ">Registrar</button></a>
                  </td>
              </tr>
-            
-         </table>
+        </table>  
      </form>
     </body>
 </html>

@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : index
     Created on : 25-11-2016, 10:19:14 AM
@@ -125,11 +126,11 @@
                  <td>
                     <select name="cmb_Ciudades">
                         <option> Seleccionar </option>
-                            <c:forEach var="Ciudad" items="${sessionScope.sesion_lista_comuna}">
-                                <option value="${Ciudad.getCiudad_id()}">
-                                    ${Ciudad.getCiudad_nombre()}
-                                </option>
-                            </c:forEach>
+                        <c:forEach var="x" items="${sessionScope.sesion_lista_comuna}">
+                            <option value="${x.getCiudad_id()}">
+                                    ${x.getCiudad_nombre()}
+                            </option>
+                        </c:forEach>    
                     </select>
                  </td>
                  <td class="asteriscoRojo">*</td>

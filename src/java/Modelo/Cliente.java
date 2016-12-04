@@ -17,7 +17,7 @@ public class Cliente {
     private String apMaternoCliente;
     private String direccionCliente;
     private int numeracionCliente;
-    private int comunaCliente;
+    private Comuna comuna_Cliente;
     private int telefonoCliente;
     
     public Cliente(){
@@ -28,7 +28,7 @@ public class Cliente {
         apMaternoCliente = "";
         direccionCliente = "";
         numeracionCliente = 0;
-        comunaCliente = 0;
+        comuna_Cliente =  new Comuna();
         telefonoCliente = 0;
     }
 
@@ -88,13 +88,15 @@ public class Cliente {
         this.numeracionCliente = numeracionCliente;
     }
 
-    public int getComunaCliente() {
-        return comunaCliente;
+    public Comuna getComuna_Cliente() {
+        return comuna_Cliente;
     }
 
-    public void setComunaCliente(int comunaCliente) {
-        this.comunaCliente = comunaCliente;
+    public void setComuna_Cliente(Comuna comuna_Cliente) {
+        this.comuna_Cliente = comuna_Cliente;
     }
+
+    
 
     public int getTelefonoCliente() {
         return telefonoCliente;

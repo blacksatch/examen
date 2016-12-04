@@ -5,13 +5,17 @@
  */
 package Servlet;
 
+import DAO.PedidoDAO;
+import Modelo.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,6 +38,11 @@ public class ServletOpcion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            HttpSession sesion = request.getSession(true);
+            
+            sesion.setAttribute("sesion_Lista_Pedidos", ListarPedido());
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -43,6 +52,22 @@ public class ServletOpcion extends HttpServlet {
             out.println("<h1>Servlet ServletOpcion at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+        }
+    }
+    
+    public ArrayList<Pedido> ListarPedido(){
+        
+        ArrayList<Pedido> listaPedido = new ArrayList<>();
+        PedidoDAO ctrlPedido = new PedidoDAO();
+        
+        try
+        {
+            return listaPedido =  ctrlPedido.ListarPedido();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 

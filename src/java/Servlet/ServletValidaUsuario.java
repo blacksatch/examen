@@ -90,7 +90,7 @@ public class ServletValidaUsuario extends HttpServlet {
                     nuevoCli.setApMaternoCliente(request.getParameter("txtApMaternoReg"));
                     nuevoCli.setDireccionCliente(request.getParameter("txtDireccionReg"));
                     nuevoCli.setNumeracionCliente(Integer.parseInt(request.getParameter("txtNumeracionReg")));
-                    nuevoCli.setComunaCliente(Integer.parseInt(request.getParameter("cmb_Comuna")));
+                    nuevoCli.getComuna_Cliente().setIdComuna(Integer.parseInt(request.getParameter("cmb_Comuna")));
                     nuevoCli.setTelefonoCliente(Integer.parseInt(request.getParameter("txtTelefonoReg")));
                     if (validaRut(request.getParameter("txtRutReg"))) {
                         nuevoCli.setRutCliente(request.getParameter("txtRutReg"));

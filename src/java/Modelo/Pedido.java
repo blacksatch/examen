@@ -11,21 +11,38 @@ package Modelo;
  */
 public class Pedido {
     private int idPedido;
-    private String rutCliente;
-    private int plato;
-    private int bebida;
+    private Cliente cliente;
+    private Plato plato;
+    private Bebida bebida;
     private boolean despacho;
     private int total;
     private String fechaPedido;
+    
 
     public Pedido() {
         idPedido = 0;
-        rutCliente = "";
-        plato = 0;
-        bebida = 0;
+        cliente =  new Cliente();
+        plato =  new Plato();
+        bebida =  new Bebida();
         despacho = false;
         total = 0;
         fechaPedido = "";
+    }
+
+    public Plato getPlato() {
+        return plato;
+    }
+
+    public void setPlato(Plato plato) {
+        this.plato = plato;
+    }
+
+    public Bebida getBebida() {
+        return bebida;
+    }
+
+    public void setBebida(Bebida bebida) {
+        this.bebida = bebida;
     }
 
     public int getIdPedido() {
@@ -36,28 +53,12 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public String getRutCliente() {
-        return rutCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setRutCliente(String rutCliente) {
-        this.rutCliente = rutCliente;
-    }
-
-    public int getPlato() {
-        return plato;
-    }
-
-    public void setPlato(int plato) {
-        this.plato = plato;
-    }
-
-    public int getBebida() {
-        return bebida;
-    }
-
-    public void setBebida(int bebida) {
-        this.bebida = bebida;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public boolean isDespacho() {

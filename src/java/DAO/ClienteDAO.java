@@ -36,7 +36,7 @@ public class ClienteDAO {
                     + "'"+cliente.getNombreCliente()+"','"+cliente.getApPaternoCliente()+"',"
                     + "'"+cliente.getApMaternoCliente()+"','"+cliente.getDireccionCliente()+"',"
                     + "'"+cliente.getNumeracionCliente()+"',"
-                    + "'"+cliente.getTelefonoCliente()+"','"+cliente.getComunaCliente()+"');";           
+                    + "'"+cliente.getTelefonoCliente()+"','"+cliente.getComuna_Cliente().getIdComuna()+"');";           
             
             System.out.println(consulta);
             stms.executeUpdate(consulta);

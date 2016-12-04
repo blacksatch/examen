@@ -32,7 +32,11 @@ public class PedidoDAO
             
             Statement stms = conexion.createStatement();
             
-            String consulta = "SELECT pedido_id, despacho,total,fecha_hora,cliente_rut,plato_id,bebida_id FROM pedido;";
+            String consulta = "SELECT P.pedido_id,PL.nombre,B.nombre,C.direccion,C.telefono,CM.descripcion,P.fecha_hora,P.total"
+                    + "FROM pedido P JOIN cliente C ON P.cliente_rut = C.rut"
+                    + "JOIN plato PL ON P.plato_id = PL.id"
+                    + "JOIN bebida B ON P.bebida_id = B.id"
+                    + "JOIN comuna CM ON C.comuna_id = CM.id;";
             
             System.out.println(consulta);            
             
@@ -42,17 +46,19 @@ public class PedidoDAO
             {
                 Pedido ped = new Pedido();
                 ped.setIdPedido(setResultados.getInt(1));
-                ped.setDespacho(setResultados.getBoolean(2));
-                ped.setTotal(setResultados.getInt(3));
-                ped.setFechaPedido(setResultados.getString(4));
-                ped.setRutCliente(setResultados.getString(5));
-                ped.setPlato(setResultados.getInt(6));
-                ped.setBebida(setResultados.getInt(7));
+                ped.getPlato().setNombrePlato(setResultados.getString(2));
+                ped.getBebida().setNombreBebida(setResultados.getString(3));
+                ped.getCliente().setDireccionCliente(setResultados.getString(4));
+                ped.getCliente().setTelefonoCliente(setResultados.getInt(5));
+                ped.getCliente().getComuna_Cliente().setNombreComuna(setResultados.getString(6));
+                ped.setFechaPedido(setResultados.getString(7));
+                ped.setTotal(setResultados.getInt(8));
                                             
                 ListaPedido.add(ped);
             }
             
             return ListaPedido;
+            
         }
         catch(Exception ex)
         {
@@ -73,7 +79,7 @@ public class PedidoDAO
                 
             
             String consulta = "INSERT INTO cliente VALUES('null,"+pedido.isDespacho()+"','"+pedido.getTotal()+"',"
-                    + "'"+pedido.getFechaPedido()+"','"+pedido.getRutCliente()+"',"
+                    + "'"+pedido.getFechaPedido()+"','"+pedido.getCliente().getRutCliente()+"',"
                     + "'"+pedido.getBebida()+"');";           
             
             System.out.println(consulta);

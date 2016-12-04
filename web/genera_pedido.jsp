@@ -48,10 +48,17 @@
              </tr>
              <tr>
                  <td>
-                     <label style="color: white; font-size: 15px">HOLA HOLA</label>
+                     <label style="color: white; font-size: 15px">Plato</label>
                  </td>
                  <td>
-                     <input type="text" name="txtRutLog" class="form-control" placeholder="Ingrese Rut" required autofocus>
+                     <select name="cmb_Ciudades">
+                        <option> Seleccionar </option>
+                        
+                            <option value="prueba">
+                                    prueba
+                            </option>
+                            
+                    </select>
                  </td>
              </tr>
              <tr>

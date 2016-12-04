@@ -42,6 +42,7 @@ public class ComunaDAO {
                 listaComunas.add(com);
             }
             
+            System.out.println("EXITOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!");
             return listaComunas;
         }
         catch(Exception ex)

@@ -39,7 +39,7 @@
      </br>
      
      <!-- Login -->
-     <form class="form-signin" action="./ServletValidaUsuario" method="post">
+     <form name="frmLogin" class="form-signin" action="./ServletValidaUsuario" method="post">
          <table align="center">
              <tr align="center">
                  <td colspan="2">
@@ -69,10 +69,19 @@
              </tr>
              <tr>
                  <td>
-                     <a href="./ServletValidaUsuario"><button name="btnRegistrar" type="submit" class="btn btn-lg btn-link btn-block ">Registrar</button></a>
+                     <input type="button" name="btnRegistrar" class="bn btn-lg btn-link" />Registrar
                  </td>
              </tr>
         </table>  
+     </form>
+     <form action="./ServletValidaUsuario" method="post">
+         <table align="center">
+            <tr>
+                 <td>
+                     <input type="submit" name="btnRegistrar" class="bn btn-lg btn-link" value="Registrar"/>
+                 </td>
+             </tr>
+         </table>
      </form>
     </body>
 </html>

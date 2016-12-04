@@ -38,7 +38,6 @@
      </br>
      </br>
      </br>
-    <body>
         <h1>"Donde la Abuela" :: Menu</h1><br/><br/>
         <a href="genera_pedido.jsp"><h2>Generar un Pedido</h2></a><br/>
         <a href="listar_pedidos.jsp"><h2>Ver mis pedidos</h2></a>

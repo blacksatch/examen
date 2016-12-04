@@ -8,6 +8,7 @@ package Servlet;
 import DAO.ClienteDAO;
 import DAO.ComunaDAO;
 import Modelo.Comuna;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -34,7 +35,9 @@ public class ServletValidaUsuario extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * 
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,10 +46,10 @@ public class ServletValidaUsuario extends HttpServlet {
             String rutLog = request.getParameter("txtRutLog");
             String passLog = request.getParameter("txtPassLog");
             String btnIngresar = request.getParameter("btnIngresar");
-            String btnRegistrar = request.getParameter("btnRegistrar");
-            Object btnRegistrar2 = request.getParameter("boton");
+            String btnRegistrar = (String)request.getAttribute("btnRegistrar");
             RequestDispatcher dispatcher = null;
             HttpSession sesion =  request.getSession(true);
+            
             
             
             if (btnIngresar != null) {
@@ -59,7 +62,7 @@ public class ServletValidaUsuario extends HttpServlet {
                         dispatcher.forward(request, response);
                     }
                 }
-            } else if (btnRegistrar != null || btnRegistrar2 != null) {
+            } else if (btnRegistrar != null) {
                 sesion.setAttribute("sesion_lista_comuna", ListaComunas());
                 dispatcher = getServletContext().getRequestDispatcher("/registro.jsp");
                 dispatcher.forward(request, response);
@@ -67,6 +70,8 @@ public class ServletValidaUsuario extends HttpServlet {
             
         }
     }
+    
+    
 
     public boolean buscaClienteRut(String rut){
         ClienteDAO ctrlCli = new ClienteDAO();

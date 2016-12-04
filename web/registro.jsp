@@ -127,8 +127,8 @@
                     <select name="cmb_Ciudades">
                         <option> Seleccionar </option>
                         <c:forEach var="x" items="${sessionScope.sesion_lista_comuna}">
-                            <option value="${x.getCiudad_id()}">
-                                    ${x.getCiudad_nombre()}
+                            <option value="${x.getIdComuna()}">
+                                    ${x.getNombreComuna()}
                             </option>
                         </c:forEach>    
                     </select>

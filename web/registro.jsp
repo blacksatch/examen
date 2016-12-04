@@ -124,7 +124,7 @@
                      <label class="label2">Comuna</label>
                  </td>
                  <td>
-                    <select name="cmb_Ciudades">
+                    <select name="cmb_Comuna">
                         <option> Seleccionar </option>
                         <c:forEach var="x" items="${sessionScope.sesion_lista_comuna}">
                             <option value="${x.getIdComuna()}">
@@ -137,10 +137,10 @@
              </tr>
              <tr>
                  <td>
-                     <label class="label2">Rut</label>
+                     <label class="label2">Teléfono</label>
                  </td>
                  <td>
-                     <input type="text" name="txtRutReg" class="form-signin" placeholder="Ingrese Rut" required autofocus>
+                     <input type="text" name="txtTelefonoReg" class="form-signin" placeholder="Ingrese Teléfono" required autofocus>
                  </td>
                  <td class="asteriscoRojo">*</td>
              </tr>

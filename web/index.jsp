@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : index
     Created on : 25-11-2016, 10:19:14 AM
@@ -17,6 +18,14 @@
         <title>Donde La Abuela</title>
     </head>
     <body>
+        
+    <!-- Mensaje de Registro satisfactorio -->   
+    <c:if test="${sessionScope.sesion_ingreso_correcto == 1}">
+        <script type="text/javascript">
+            alert("Cliente registrado satisfactoriamente");
+        </script>
+    </c:if>
+    
      <!--Navegador superior -->
      <nav class="navbar navbar-default navbar-fixed-top" style="background-color:  peru">
       <div class="container">

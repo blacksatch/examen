@@ -7,6 +7,7 @@ package Servlet;
 
 import DAO.ClienteDAO;
 import DAO.ComunaDAO;
+import Modelo.Cliente;
 import Modelo.Comuna;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
@@ -46,10 +47,11 @@ public class ServletValidaUsuario extends HttpServlet {
             String rutLog = request.getParameter("txtRutLog");
             String passLog = request.getParameter("txtPassLog");
             String btnIngresar = request.getParameter("btnIngresar");
-            String btnRegistrar = (String)request.getAttribute("btnRegistrar");
+            String btnRegistrar = request.getParameter("btnRegistrar");
             String btnRegistrar2 = request.getParameter("btnRegistrar2");
             RequestDispatcher dispatcher = null;
             HttpSession sesion =  request.getSession(true);
+            sesion.setAttribute("sesion_ingreso_correcto", 0);
             
             
             
@@ -64,9 +66,27 @@ public class ServletValidaUsuario extends HttpServlet {
                     }
                 }
             } else if (btnRegistrar != null || btnRegistrar2 != null) {
-                sesion.setAttribute("sesion_lista_comuna", ListaComunas());
-                dispatcher = getServletContext().getRequestDispatcher("/registro.jsp");
-                dispatcher.forward(request, response);
+                if (btnRegistrar2 != null) {
+                    sesion.setAttribute("sesion_lista_comuna", ListaComunas());
+                    dispatcher = getServletContext().getRequestDispatcher("/registro.jsp");
+                    dispatcher.forward(request, response);
+                }else if (btnRegistrar != null) {
+                    Cliente nuevoCli = new Cliente();
+                    nuevoCli.setRutCliente(request.getParameter("txtRutReg"));
+                    nuevoCli.setClaveCliente(request.getParameter("txtClaveReg"));
+                    nuevoCli.setNombreCliente(request.getParameter("txtNombreReg"));
+                    nuevoCli.setApPaternoCliente(request.getParameter("txtApPaternoReg"));
+                    nuevoCli.setApMaternoCliente(request.getParameter("txtApMaternoReg"));
+                    nuevoCli.setDireccionCliente(request.getParameter("txtDireccionReg"));
+                    nuevoCli.setNumeracionCliente(Integer.parseInt(request.getParameter("txtNumeracionReg")));
+                    nuevoCli.setComunaCliente(Integer.parseInt(request.getParameter("cmb_Comuna")));
+                    nuevoCli.setTelefonoCliente(Integer.parseInt(request.getParameter("txtTelefonoReg")));
+                    AgregarCliente(nuevoCli);
+                    sesion.setAttribute("sesion_ingreso_correcto", 1);
+                    dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                    dispatcher.forward(request, response);
+                }
+                
             }
             
         }
@@ -107,6 +127,15 @@ public class ServletValidaUsuario extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             return listaCom;
+        }
+    }
+    
+    public void AgregarCliente(Cliente cli){
+       ClienteDAO ctrlCli = new ClienteDAO();
+        try {
+            ctrlCli.agregarCliente(cli);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     

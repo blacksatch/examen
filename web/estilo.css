@@ -1,0 +1,33 @@
+body{
+    background: url(IMG/platos_cocina_gourmet.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing:  5px 15px;
+}
+
+.table2 {
+  border-collapse: separate;
+  border-spacing:  20px 5px;
+}
+
+.asteriscoRojo {
+    font-size: 20px;
+    color: red;
+}
+
+.label2{
+    color: white; 
+    font-size: 15px;
+}
+
+/* 
+    Created on : 25-11-2016, 11:00:56 AM
+    Author     : yo
+*/
+

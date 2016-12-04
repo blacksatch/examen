@@ -42,22 +42,24 @@
      </br>
      </br>
      </br>
+     <form action="./ServletOpcion" method="post">
      <table align="center">
-         <tr>
-             <td>
-                 <h2 class="form-signin-heading" style="color: white ">Menu</h2>
+         <tr align="center">
+             <td colspan="2">
+                     <h2 class="form-signin-heading" style="color: white ">Menú</h2>
              </td>
          </tr>
          <tr>
              <td>
-                 <a href="genera_pedido.jsp"><h4>Generar un Pedido</h4></a><br/>
+                 <input type="submit" name="lkGenerarPedido" class="bn btn-lg btn-link" value="Generar un Pedido"/>
              </td>
          </tr>
          <tr>
              <td>
-                 <a href="listar_pedidos.jsp"><h4>Ver mis pedidos</h4></a>
+                 <input type="submit" name="lkVerPedidos" class="bn btn-lg btn-link" value="Ver mis Pedidos"/>
              </td>
          </tr>
      </table>
+    </form>
     </body>
 </html>

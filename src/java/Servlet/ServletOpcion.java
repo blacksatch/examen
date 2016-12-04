@@ -5,11 +5,16 @@
  */
 package Servlet;
 
+import DAO.BebidaDAO;
 import DAO.PedidoDAO;
+import DAO.PlatoDAO;
+import Modelo.Bebida;
 import Modelo.Pedido;
+import Modelo.Plato;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,19 +44,48 @@ public class ServletOpcion extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            HttpSession sesion = request.getSession(true);
+            String btnListar = request.getParameter("lkVerPedidos");
+            String btnGeneraPedido = request.getParameter("lkGenerarPedido");
+            RequestDispatcher dispatcher = null;
+            HttpSession sesion =  request.getSession(true);
+            sesion.setAttribute("sesion_Lista_Pedidos", null);
+            sesion.setAttribute("sesion_obtiene_platos", null);
+            sesion.setAttribute("sesion_obtiene_bebidas", null);
             
-            sesion.setAttribute("sesion_Lista_Pedidos", ListarPedido());
+            if (btnListar != null) {
+                sesion.setAttribute("sesion_Lista_Pedidos", ListarPedido());
+                dispatcher = getServletContext().getRequestDispatcher("/lista_pedido.jsp");
+                dispatcher.forward(request, response);
+            }else if (btnGeneraPedido != null) {
+                sesion.setAttribute("sesion_obtiene_platos", traePlatos());
+                sesion.setAttribute("sesion_obtiene_bebidas", traeBebidas());
+                dispatcher = getServletContext().getRequestDispatcher("/genera_pedido.jsp");
+                dispatcher.forward(request, response);
+            }
             
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletOpcion</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletOpcion at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            
+            
+        }
+    }
+    
+    public Plato traePlatos(){
+        PlatoDAO ctrlPL = new PlatoDAO();
+        try {
+            return ctrlPL.traePlatos();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Plato();
+        }
+    }
+    
+    public Bebida traeBebidas(){
+        BebidaDAO ctrlBeb = new BebidaDAO();
+        try {
+            return ctrlBeb.traeBebidas();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Bebida();
         }
     }
     

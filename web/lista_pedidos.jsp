@@ -38,7 +38,7 @@
      </br>
      </br>
      </br>
-    <body>
+    
         <h1>Listar Pedidos</h1>
         
         <form method="post" action="">

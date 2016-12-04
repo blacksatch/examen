@@ -40,8 +40,7 @@
      </br>
      
      <form>
-         <table>
-             <table align="center">
+         <table align="center">
              <tr align="center">
                  <td colspan="2">
                      <h2 class="form-signin-heading" style="color: white ">Agregar Pedido</h2>
@@ -53,12 +52,10 @@
                 </td>
                 <td>
                     <select name="cmb_Ciudades">
-                        <option> Seleccionar </option>
-                        <c:forEach var="" items="">
-                            <option value="prueba">prueba</option>
-                        </c:forEach>
-                        
-                        
+                        <option> Seleccionar Plato</option>
+                        <c:forEach var="x" items="${sessionScope.sesion_obtiene_platos}">
+                            <option value="${sessionScope.x.getIdPlato()}">${sessionScope.x.getIdPlato()} - $${sessionScope.x.getPrecioPlato()}</option>
+                        </c:forEach>    
                     </select>
                 </td>
              </tr>
@@ -67,8 +64,9 @@
                     <label style="color: white; font-size: 15px">Bebida</label>
                 </td>
                 <td>
-                    <c:forEach var="" items="">
-                        <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio">Option 1</label>
+                    <c:forEach var="x" items="${sessionScope.sesion_obtiene_bebidas}">
+                        <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio" value="${sessionScope.x.getIdBebida()}">
+                            ${sessionScope.x.getNombreBebida()} $${sessionScope.x.getPrecioBebida()}</label>
                     </c:forEach>
                 </td>
              </tr>

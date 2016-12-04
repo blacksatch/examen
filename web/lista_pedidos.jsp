@@ -25,7 +25,7 @@
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-controls="navbar">   
                     
           </button>
-            <a class="navbar-brand" style="color: white">Donde La Abuela ctm</a>
+            <a class="navbar-brand" style="color: white">Donde La Abuela </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">

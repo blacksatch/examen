@@ -9,13 +9,21 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/i18n/defaults-*.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="yourPath/silviomoreto-bootstrap-select-83d5a1b/dist/css/bootstrap-select.css">
+        <link href="yourPath/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="starter-template.css" rel="stylesheet">
         <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
         <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="estilo.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
         <title>Donde La Abuela</title>
+        
     </head>
     <body>
      <!--Navegador superior -->
@@ -131,18 +139,8 @@
                      <label class="label2">Comuna</label>
                  </td>
                  <td>
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-                          <li role="presentation" class="divider"></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
-                        </ul>
-                    </div>
-                    <select name="cmb_Comuna">
+                    
+                     <select name="cmb_Comuna">
                         <option> Seleccionar </option>
                         <c:forEach var="x" items="${sessionScope.sesion_lista_comuna}">
                             <option value="${x.getIdComuna()}">
@@ -151,6 +149,7 @@
                         </c:forEach>    
                     </select>
                  </td>
+                 
                  <td class="asteriscoRojo">*</td>
              </tr>
              <tr>

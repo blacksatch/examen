@@ -43,7 +43,7 @@
          <table align="center" class="table2">
              <tr align="center">
                  <td colspan="2">
-                     <h2 class="form-signin-heading" style="color: white ">Registro</h2>
+                     <h2 class="form-signin-heading" style="color: white ">Registro CTM</h2>
                  </td>
              </tr>
              <tr>

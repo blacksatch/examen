@@ -48,7 +48,7 @@
              </tr>
              <tr>
                  <td>
-                     <label style="color: white; font-size: 15px">Rut</label>
+                     <label style="color: white; font-size: 15px">HOLA HOLA</label>
                  </td>
                  <td>
                      <input type="text" name="txtRutLog" class="form-control" placeholder="Ingrese Rut" required autofocus>

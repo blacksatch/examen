@@ -19,8 +19,7 @@ import java.util.GregorianCalendar;
  */
 public class Util 
 {
-    public void RegistrarLog(String tipo, String mensaje)
-    {
+    public void RegistrarLog(String tipo, String mensaje){
         
         Calendar calendario = new GregorianCalendar();
         
@@ -67,7 +66,7 @@ public class Util
         
     }   
     
-        public static boolean validarRut(String rut) {
+    public boolean validarRut(String rut) {
 
             boolean validacion = false;
             try {

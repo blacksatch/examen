@@ -9,6 +9,7 @@ import DAO.ClienteDAO;
 import DAO.ComunaDAO;
 import Modelo.Cliente;
 import Modelo.Comuna;
+import Utilidades.Util;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,27 +44,38 @@ public class ServletValidaUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            String rutLog = request.getParameter("txtRutLog");
-            String passLog = request.getParameter("txtPassLog");
+                        
             String btnIngresar = request.getParameter("btnIngresar");
+            String btnCierra = request.getParameter("btnCerrarSesion");
             String btnRegistrar = request.getParameter("btnRegistrar");
             String btnRegistrar2 = request.getParameter("btnRegistrar2");
             RequestDispatcher dispatcher = null;
             HttpSession sesion =  request.getSession(true);
             sesion.setAttribute("sesion_ingreso_correcto", 0);
-            
+            sesion.setAttribute("sesion_valida_rut_error", 0);
+            sesion.setAttribute("sesion_valida_mal", 0);
             
             
             if (btnIngresar != null) {
+                String rutLog = request.getParameter("txtRutLog");
+                String passLog = request.getParameter("txtPassLog");
                 if (buscaClienteRut(rutLog)) {
                     if (validaCliente(rutLog, passLog)) {
+                        Cliente traeCli = new Cliente();
+                        traeCli = traeCliente(rutLog);
+                        String nombreCompleto = traeCli.getNombreCliente()+" "+traeCli.getApPaternoCliente()+" "+traeCli.getApMaternoCliente();
+                        sesion.setAttribute("sesion_usuario_bienvenido", nombreCompleto);
                         dispatcher = getServletContext().getRequestDispatcher("/menu.jsp");
                         dispatcher.forward(request, response);
                     }else{
+                        sesion.setAttribute("sesion_valida_mal", 1);
                         dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
                         dispatcher.forward(request, response);
                     }
+                }else{
+                    sesion.setAttribute("sesion_valida_mal", 1);
+                    dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                    dispatcher.forward(request, response);
                 }
             } else if (btnRegistrar != null || btnRegistrar2 != null) {
                 if (btnRegistrar2 != null) {
@@ -72,7 +84,6 @@ public class ServletValidaUsuario extends HttpServlet {
                     dispatcher.forward(request, response);
                 }else if (btnRegistrar != null) {
                     Cliente nuevoCli = new Cliente();
-                    nuevoCli.setRutCliente(request.getParameter("txtRutReg"));
                     nuevoCli.setClaveCliente(request.getParameter("txtClaveReg"));
                     nuevoCli.setNombreCliente(request.getParameter("txtNombreReg"));
                     nuevoCli.setApPaternoCliente(request.getParameter("txtApPaternoReg"));
@@ -81,18 +92,39 @@ public class ServletValidaUsuario extends HttpServlet {
                     nuevoCli.setNumeracionCliente(Integer.parseInt(request.getParameter("txtNumeracionReg")));
                     nuevoCli.setComunaCliente(Integer.parseInt(request.getParameter("cmb_Comuna")));
                     nuevoCli.setTelefonoCliente(Integer.parseInt(request.getParameter("txtTelefonoReg")));
-                    AgregarCliente(nuevoCli);
-                    sesion.setAttribute("sesion_ingreso_correcto", 1);
-                    dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-                    dispatcher.forward(request, response);
-                }
-                
+                    if (validaRut(request.getParameter("txtRutReg"))) {
+                        nuevoCli.setRutCliente(request.getParameter("txtRutReg"));
+                        AgregarCliente(nuevoCli);
+                        sesion.setAttribute("sesion_ingreso_correcto", 1);
+                        dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                        dispatcher.forward(request, response);
+                    } else{
+                        sesion.setAttribute("sesion_valida_rut_error", 1);
+                        dispatcher = getServletContext().getRequestDispatcher("/registro.jsp");
+                        dispatcher.forward(request, response);
+                    }   
+                }   
+            }else if (btnCierra != null) {
+                sesion.setAttribute("sesion_usuario_bienvenido", null);
+                dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
             }
             
         }
     }
     
-    
+    public Cliente traeCliente(String rut){
+        ClienteDAO ctrlCli = new ClienteDAO();
+        Cliente cli = new Cliente();
+        try {
+            cli = ctrlCli.buscaCliete(rut);
+            return cli;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return cli;
+        }
+        
+    }
 
     public boolean buscaClienteRut(String rut){
         ClienteDAO ctrlCli = new ClienteDAO();
@@ -136,6 +168,16 @@ public class ServletValidaUsuario extends HttpServlet {
             ctrlCli.agregarCliente(cli);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public boolean validaRut(String rut){
+        Util u = new Util();
+        try {
+            return u.validarRut(rut);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
     

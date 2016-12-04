@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : index
     Created on : 25-11-2016, 10:19:14 AM
@@ -29,8 +30,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+              <c:if var="x" test="${sessionScope.sesion_usuario_bienvenido != null}">
               <li><a style="color: white">Bienvenido(a) </a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+              <li><p class="navbar-text" style="color: white">${sessionScope.sesion_usuario_bienvenido}</p></li>
+              <li><a href="./ServletLogOut">Cerrar Sesión</a></li>
+              </c:if>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -38,9 +42,22 @@
      </br>
      </br>
      </br>
-        <h1>"Donde la Abuela" :: Menu</h1><br/><br/>
-        <a href="genera_pedido.jsp"><h2>Generar un Pedido</h2></a><br/>
-        <a href="listar_pedidos.jsp"><h2>Ver mis pedidos</h2></a>
-        
+     <table align="center">
+         <tr>
+             <td>
+                 <h2 class="form-signin-heading" style="color: white ">Menu</h2>
+             </td>
+         </tr>
+         <tr>
+             <td>
+                 <a href="genera_pedido.jsp"><h4>Generar un Pedido</h4></a><br/>
+             </td>
+         </tr>
+         <tr>
+             <td>
+                 <a href="listar_pedidos.jsp"><h4>Ver mis pedidos</h4></a>
+             </td>
+         </tr>
+     </table>
     </body>
 </html>

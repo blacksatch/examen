@@ -41,7 +41,8 @@ public class ClienteDAO {
             System.out.println(consulta);
             stms.executeUpdate(consulta);
             System.out.println("CLIENTE ALMACENADO");
-            util.RegistrarLog("s", "cliente almacenado");
+            util.RegistrarLog("s", "cliente "+cliente.getNombreCliente()+" "+cliente.getApPaternoCliente()+""
+                    + " "+cliente.getApMaternoCliente()+" almacenado");
         }
         catch(Exception ex)
         {
@@ -88,18 +89,18 @@ public class ClienteDAO {
         }               
     }*/
     
-    /*public Cliente buscaCliete(String rut){
+    public Cliente buscaCliete(String rut){
         Cliente cliente = new Cliente();
         
         try
         {
             Conexion conn = new Conexion();
-            Connection conexion = conn.getConnection("prueba_tres");
+            Connection conexion = conn.getConnection("la_abuela");
             
             Statement stms = conexion.createStatement();
             
-            String consulta = "SELECT cliente_id,cliente_rut,cliente_nombre,cliente_mail,cliente_fecha_nacimiento"
-                    + " FROM cliente WHERE cliente_rut = '"+rut+"';";
+            String consulta = "SELECT nombre, apellido_paterno, apellido_materno"
+                    + " FROM cliente WHERE rut = '"+rut+"';";
             
             System.out.println(consulta);            
             
@@ -107,11 +108,9 @@ public class ClienteDAO {
             
             while(setResultados.next())
             {
-                cliente.setCliente_id(setResultados.getInt(1));
-                cliente.setCliente_rut(setResultados.getString(2));
-                cliente.setCliente_nombre(setResultados.getString(3));
-                cliente.setCliente_mail(setResultados.getString(4));
-                cliente.setCliente_fechaNac(setResultados.getString(5));
+                cliente.setNombreCliente(setResultados.getString(1));
+                cliente.setApPaternoCliente(setResultados.getString(2));
+                cliente.setApMaternoCliente(setResultados.getString(3));
             }
             
             return cliente;
@@ -119,9 +118,9 @@ public class ClienteDAO {
         catch(Exception ex)
         {
             ex.printStackTrace();            
-            return new Cliente();
+            return cliente;
         }
-    }*/
+    }
     
     public boolean buscaClieteRut(String rut){
         boolean found = false;

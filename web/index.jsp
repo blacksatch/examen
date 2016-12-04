@@ -25,22 +25,33 @@
             alert("Cliente registrado satisfactoriamente");
         </script>
     </c:if>
+        
+    <!-- Mensaje de Error loguin -->   
+    <c:if test="${sessionScope.sesion_valida_mal == 1}">
+        <script type="text/javascript">
+            alert("Usuario/Contraseña invalido. Reintentar");
+        </script>
+    </c:if>
     
      <!--Navegador superior -->
      <nav class="navbar navbar-default navbar-fixed-top" style="background-color:  peru">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-controls="navbar">   
+          <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-controls="navbar">   
             
-          </button>
+          </button>-->
             <a class="navbar-brand" style="color: white">Donde La Abuela</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+          <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+              <c:if var="x" test="${sessionScope.sesion_usuario_bienvenido != null}">
               <li><a style="color: white">Bienvenido(a) </a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+              <li><p class="navbar-text" style="color: white">${sessionScope.sesion_usuario_bienvenido}</p></li>
+              <li><a href="./ServletLogOut">Cerrar Sesión</a></li>
+              </c:if>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+             
       </div>
     </nav>
      </br>

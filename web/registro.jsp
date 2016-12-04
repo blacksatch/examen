@@ -39,6 +39,13 @@
      </br>
      </br>
      
+     <!-- Mensaje de Error Rut -->   
+    <c:if test="${sessionScope.sesion_valida_rut_error == 1}">
+        <div class="alert alert-danger">
+            <strong>Error !!</strong> Ingrese rut válido.
+        </div>
+    </c:if>
+     
      <!-- Pantalla Registro -->
      <form class="form-signin" action="./ServletValidaUsuario" method="post">
          <table align="center" class="table2">

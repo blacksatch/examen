@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -90,4 +91,14 @@ public class Util
             }
             return validacion;
             }
+    
+    public String EncriptarClave(String clave)
+    {
+        String textoSinEncriptar=clave; 
+        String textoEncriptadoConMD5=DigestUtils.md5Hex(textoSinEncriptar); 
+        System.out.println("Texto Encriptado con MD5 : "+textoEncriptadoConMD5);
+        return textoEncriptadoConMD5;
+
+    }
+    
 }

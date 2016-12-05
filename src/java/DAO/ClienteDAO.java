@@ -32,7 +32,7 @@ public class ClienteDAO {
             Statement stms = conexion.createStatement();
             
             
-            String consulta = "INSERT INTO cliente VALUES('"+cliente.getClaveCliente()+"','"+cliente.getRutCliente()+"',"
+            String consulta = "INSERT INTO cliente VALUES('"+util.EncriptarClave(cliente.getClaveCliente())+"','"+cliente.getRutCliente()+"',"
                     + "'"+cliente.getNombreCliente()+"','"+cliente.getApPaternoCliente()+"',"
                     + "'"+cliente.getApMaternoCliente()+"','"+cliente.getDireccionCliente()+"',"
                     + "'"+cliente.getNumeracionCliente()+"',"
@@ -162,7 +162,7 @@ public class ClienteDAO {
 
             Statement stms = conexion.createStatement();
 
-            String consulta = "SELECT nombre FROM cliente WHERE rut = '"+rut+"' AND clave = '"+pass+"';";
+            String consulta = "SELECT nombre FROM cliente WHERE rut = '"+rut+"' AND clave = '"+util.EncriptarClave(pass)+"';";
 
             System.out.println(consulta);            
 

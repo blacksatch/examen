@@ -42,50 +42,46 @@ public class ServletOpcion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             
             String btnListar = request.getParameter("lkVerPedidos");
             String btnGeneraPedido = request.getParameter("lkGenerarPedido");
             RequestDispatcher dispatcher = null;
             HttpSession sesion =  request.getSession(true);
-            sesion.setAttribute("sesion_Lista_Pedidos", null);
-            sesion.setAttribute("sesion_obtiene_platos", null);
-            sesion.setAttribute("sesion_obtiene_bebidas", null);
             
             if (btnListar != null) {
                 sesion.setAttribute("sesion_Lista_Pedidos", ListarPedido());
-                dispatcher = getServletContext().getRequestDispatcher("/lista_pedido.jsp");
+                dispatcher = getServletContext().getRequestDispatcher("/lista_pedidos.jsp");
                 dispatcher.forward(request, response);
-            }else if (btnGeneraPedido != null) {
-                sesion.setAttribute("sesion_obtiene_platos", traePlatos());
-                sesion.setAttribute("sesion_obtiene_bebidas", traeBebidas());
+            }else if(btnGeneraPedido != null) {
+                sesion.setAttribute("sesion_platos", traePlatos());
+                sesion.setAttribute("sesion_bebidas", traeBebidas());
                 dispatcher = getServletContext().getRequestDispatcher("/genera_pedido.jsp");
                 dispatcher.forward(request, response);
-            }
-            
-            
-            
-            
+            }    
         }
     }
     
-    public Plato traePlatos(){
+    public ArrayList<Plato> traePlatos(){
         PlatoDAO ctrlPL = new PlatoDAO();
+        ArrayList<Plato> listaPlatos = new ArrayList<Plato>();
         try {
-            return ctrlPL.traePlatos();
+            listaPlatos = ctrlPL.traePlatos();
+            return listaPlatos;
         } catch (Exception e) {
             e.printStackTrace();
-            return new Plato();
+            return listaPlatos;
         }
     }
     
-    public Bebida traeBebidas(){
+    public ArrayList<Bebida> traeBebidas(){
         BebidaDAO ctrlBeb = new BebidaDAO();
+        ArrayList<Bebida> listaBebidas = new ArrayList<Bebida>();
         try {
-            return ctrlBeb.traeBebidas();
+            listaBebidas = ctrlBeb.traeBebidas();
+            return listaBebidas;
         } catch (Exception e) {
             e.printStackTrace();
-            return new Bebida();
+            return listaBebidas;
         }
     }
     

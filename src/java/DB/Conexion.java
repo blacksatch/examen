@@ -21,7 +21,7 @@ public class Conexion
     
     //SQL SERVER AUTENTICACION
     private final static String userName = "root";
-    private final static String password = "";
+    private final static String password = "+naturalizado";
     
     //METODO QUE REALIZA LA CONEXION
     public Connection getConnection(String dbName) throws SQLException, ClassNotFoundException 

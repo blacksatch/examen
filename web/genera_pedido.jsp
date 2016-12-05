@@ -51,7 +51,7 @@
                     <label style="color: white; font-size: 15px">Plato</label>
                 </td>
                 <td>
-                    <select name="cmb_Ciudades">
+                    <select name="cmb_Platos">
                         <option> Seleccionar Plato</option>
                         <c:forEach var="x" items="${sessionScope.sesion_obtiene_platos}">
                             <option value="${sessionScope.x.getIdPlato()}">${sessionScope.x.getIdPlato()} - $${sessionScope.x.getPrecioPlato()}</option>

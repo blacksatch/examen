@@ -11,6 +11,7 @@ import Modelo.Plato;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,9 +19,8 @@ import java.sql.Statement;
  */
 public class PlatoDAO {
     
-    public Plato traePlatos(){
-        Plato pl = new Plato();
-        
+    public ArrayList<Plato> traePlatos(){
+        ArrayList<Plato> listaPl = new ArrayList<Plato>();
         try
         {
             Conexion conn = new Conexion();
@@ -36,17 +36,19 @@ public class PlatoDAO {
             
             while(setResultados.next())
             {
+                Plato pl = new Plato();
                 pl.setIdPlato(setResultados.getInt(1));
                 pl.setNombrePlato(setResultados.getString(2));
                 pl.setPrecioPlato(setResultados.getInt(3));
+                listaPl.add(pl);
             }
             
-            return pl;
+            return listaPl;
         }
         catch(Exception ex)
         {
             ex.printStackTrace();            
-            return pl;
+            return listaPl;
         }
     }
     

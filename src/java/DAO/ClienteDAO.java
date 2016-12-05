@@ -31,8 +31,11 @@ public class ClienteDAO {
             //STATEMENT PERMITE EJECUTAR CONSULTA SQL 
             Statement stms = conexion.createStatement();
             
+            String claveEncriptada = util.EncriptarClave(cliente.getClaveCliente());
             
-            String consulta = "INSERT INTO cliente VALUES('"+util.EncriptarClave(cliente.getClaveCliente())+"','"+cliente.getRutCliente()+"',"
+            System.out.println(claveEncriptada);
+            
+            String consulta = "INSERT INTO cliente VALUES('"+claveEncriptada+"','"+cliente.getRutCliente()+"',"
                     + "'"+cliente.getNombreCliente()+"','"+cliente.getApPaternoCliente()+"',"
                     + "'"+cliente.getApMaternoCliente()+"','"+cliente.getDireccionCliente()+"',"
                     + "'"+cliente.getNumeracionCliente()+"',"

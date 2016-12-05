@@ -11,6 +11,7 @@ import Modelo.Cliente;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,8 +19,8 @@ import java.sql.Statement;
  */
 public class BebidaDAO {
     
-    public Bebida traeBebidas(){
-        Bebida beb = new Bebida();
+    public ArrayList<Bebida> traeBebidas(){
+        ArrayList<Bebida> listaBeb = new ArrayList<Bebida>();
         
         try
         {
@@ -36,17 +37,19 @@ public class BebidaDAO {
             
             while(setResultados.next())
             {
+                Bebida beb = new Bebida();
                 beb.setIdBebida(setResultados.getInt(1));
                 beb.setNombreBebida(setResultados.getString(2));
                 beb.setPrecioBebida(setResultados.getInt(3));
+                listaBeb.add(beb);
             }
             
-            return beb;
+            return listaBeb;
         }
         catch(Exception ex)
         {
             ex.printStackTrace();            
-            return beb;
+            return listaBeb;
         }
     }
     

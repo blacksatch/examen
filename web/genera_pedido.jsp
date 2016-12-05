@@ -57,7 +57,7 @@
                     <select name="cmb_Platos">
                         <option> Seleccionar Plato</option>
                         <c:forEach var="x" items="${sessionScope.sesion_platos}">
-                            <option value="${x.getNombrePlato()}">${x.getNombrePlato()} - $${x.getPrecioPlato()}</option>
+                            <option value="${x.getIdPlato()}">${x.getNombrePlato()} - $${x.getPrecioPlato()}</option>
                         </c:forEach>    
                     </select>
                 </td>
@@ -68,7 +68,7 @@
                 </td>
                 <td>
                     <c:forEach var="x" items="${sessionScope.sesion_bebidas}">
-                        <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio" value="${x.getNombreBebida()}">
+                        <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio" value="${x.getIdBebida()}">
                             ${x.getNombreBebida()}  $${x.getPrecioBebida()}</label>
                     </c:forEach>
                 </td>

@@ -6,7 +6,10 @@
 package DAO;
 
 import DB.Conexion;
+import Modelo.Bebida;
+import Modelo.Cliente;
 import Modelo.Pedido;
+import Modelo.Plato;
 import Utilidades.Util;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -92,6 +95,42 @@ public class PedidoDAO
             System.out.println("ERROR AL ALMACENAR PEDIDO");
             ex.printStackTrace();
             util.RegistrarLog("e", "ERROR AL ALMACENAR PEDIDO");
+        }
+    }
+    
+    public Pedido transformaAPedido(Bebida b, Plato p, boolean despacho){
+        Pedido nuevoPedido = new Pedido();
+        try
+        {
+            
+            Conexion conn = new Conexion();
+            Connection conexion = conn.getConnection("la_abuela");
+            
+            //STATEMENT PERMITE EJECUTAR CONSULTA SQL 
+            Statement stms = conexion.createStatement();
+                  
+            String consulta1 = "SELECT p.precio,p.nombre,b.precio,b.nombre FROM plato p, bebida b "
+                    + "WHERE p.id="+p.getIdPlato()+" AND b.id="+b.getIdBebida()+";";  
+            ResultSet setResultados1 = stms.executeQuery(consulta1);
+            while(setResultados1.next())
+            {
+                p.setPrecioPlato(setResultados1.getInt(1));
+                p.setNombrePlato(setResultados1.getString(2));
+                b.setPrecioBebida(setResultados1.getInt(3));
+                b.setNombreBebida(setResultados1.getString(4));
+            }
+            
+            nuevoPedido.setBebida(b);
+            nuevoPedido.setPlato(p);
+            nuevoPedido.setDespacho(despacho);
+            
+            return nuevoPedido;
+        }
+        catch(Exception ex)
+        {
+            System.out.println("ERROR AL TRANSFORMAR");
+            ex.printStackTrace();
+            return nuevoPedido;
         }
     }
     

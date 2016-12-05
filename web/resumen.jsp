@@ -49,13 +49,13 @@
                      <h2 class="form-signin-heading" style="color: white ">Resumen</h2>
                  </td>
              </tr>
-             <c:if var="x" test="${sessionScope.sesion_pedido != null}">
+             <c:if var="x" test="${sessionScope.sesion_pre_pedido != null}">
              <tr>
                 <td>
-                    <label style="color: white; font-size: 15px"></label>
+                    <label style="color: white; font-size: 15px">${x.getPlato().getNombrePlato()}</label>
                 </td>
                 <td>
-                    
+                    <label style="color: white; font-size: 15px">${x.getPlato().getPrecioPlato()}</label>
                 </td>
              </tr>
              <tr>

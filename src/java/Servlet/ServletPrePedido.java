@@ -5,16 +5,20 @@
  */
 package Servlet;
 
+import DAO.PedidoDAO;
 import Modelo.Bebida;
+import Modelo.Cliente;
 import Modelo.Pedido;
 import Modelo.Plato;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,14 +42,27 @@ public class ServletPrePedido extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             Plato plato = new Plato();
             Bebida bebida = new Bebida();
-            plato.setNombrePlato(request.getParameter("cmb_Platos"));
-            bebida.setNombreBebida(request.getParameter("optradio"));
+            plato.setIdPlato(Integer.parseInt(request.getParameter("cmb_Platos")));
+            bebida.setIdBebida(Integer.parseInt(request.getParameter("optradio")));
             boolean domicilio = (boolean)request.getAttribute("chkDomicilio");
+            RequestDispatcher dispatcher = null;
+            HttpSession sesion =  request.getSession(true);
             
-            Pedido nuevoPedido = new Pedido();
-            nuevoPedido.setBebida(bebida);
-            nuevoPedido.setPlato(plato);
-            nuevoPedido.setDespacho(domicilio);
+            sesion.setAttribute("sesion_pre_pedido", TransformaAPedido(bebida, plato, domicilio));
+            dispatcher = getServletContext().getRequestDispatcher("/resumen.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+    
+    public Pedido TransformaAPedido(Bebida b,Plato p,boolean despacho){
+        PedidoDAO ctrlPed = new PedidoDAO();
+        Pedido ped = new Pedido();
+        try {
+            ped = ctrlPed.transformaAPedido(b, p, despacho);
+            return ped;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ped;
         }
     }
 

@@ -5,6 +5,9 @@
  */
 package Servlet;
 
+import Modelo.Bebida;
+import Modelo.Pedido;
+import Modelo.Plato;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,16 +36,16 @@ public class ServletPrePedido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletPrePedido</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletPrePedido at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            Plato plato = new Plato();
+            Bebida bebida = new Bebida();
+            plato.setNombrePlato(request.getParameter("cmb_Platos"));
+            bebida.setNombreBebida(request.getParameter("optradio"));
+            boolean domicilio = (boolean)request.getAttribute("chkDomicilio");
+            
+            Pedido nuevoPedido = new Pedido();
+            nuevoPedido.setBebida(bebida);
+            nuevoPedido.setPlato(plato);
+            nuevoPedido.setDespacho(domicilio);
         }
     }
 

@@ -37,8 +37,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+              <c:if var="x" test="${sessionScope.sesion_usuario_bienvenido != null}">
               <li><a style="color: white">Bienvenido(a) </a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+              <li><p class="navbar-text" style="color: white">${sessionScope.sesion_usuario_bienvenido}</p></li>
+              <li><a href="./ServletLogOut">Cerrar Sesión</a></li>
+              </c:if>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -29,8 +29,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+              <c:if var="x" test="${sessionScope.sesion_usuario_bienvenido != null}">
               <li><a style="color: white">Bienvenido(a) </a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+              <li><p class="navbar-text" style="color: white">${sessionScope.sesion_usuario_bienvenido}</p></li>
+              <li><a href="./ServletLogOut">Cerrar Sesión</a></li>
+              </c:if>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -39,7 +42,7 @@
      </br>
      </br>
      
-     <form>
+     <form action="./ServletPrePedido" method="post">
          <table align="center">
              <tr align="center">
                  <td colspan="2">
@@ -53,8 +56,8 @@
                 <td>
                     <select name="cmb_Platos">
                         <option> Seleccionar Plato</option>
-                        <c:forEach var="x" items="${sessionScope.sesion_obtiene_platos}">
-                            <option value="${sessionScope.x.getIdPlato()}">${sessionScope.x.getIdPlato()} - $${sessionScope.x.getPrecioPlato()}</option>
+                        <c:forEach var="x" items="${sessionScope.sesion_platos}">
+                            <option value="${x.getNombrePlato()}">${x.getNombrePlato()} - $${x.getPrecioPlato()}</option>
                         </c:forEach>    
                     </select>
                 </td>
@@ -64,20 +67,21 @@
                     <label style="color: white; font-size: 15px">Bebida</label>
                 </td>
                 <td>
-                    <c:forEach var="x" items="${sessionScope.sesion_obtiene_bebidas}">
-                        <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio" value="${sessionScope.x.getIdBebida()}">
-                            ${sessionScope.x.getNombreBebida()} $${sessionScope.x.getPrecioBebida()}</label>
+                    <c:forEach var="x" items="${sessionScope.sesion_bebidas}">
+                        <label class="radio-inline" style="color: whitesmoke"><input type="radio" name="optradio" value="${x.getNombreBebida()}">
+                            ${x.getNombreBebida()}  $${x.getPrecioBebida()}</label>
                     </c:forEach>
                 </td>
              </tr>
+             <tr><td><label style="color: whitesmoke"><input style="color: white" type="checkbox" name="chkDomicilio">    A Domicilio</label></td></tr>
              <tr align="center">
                  <td colspan="2">
-                     <button name="btnIngresar" style="width: 100%" class="btn btn-lg btn-warning btn-block" type="submit">INGRESAR</button>
+                     <button name="btnIngresar" style="width: 100%" class="btn btn-lg btn-warning btn-block" type="submit">Siguiente</button>
                  </td>
              </tr>
              <tr>
                  <td>
-                     <a href="./ServletValidaUsuario"><button name="btnRegistrar" type="submit" class="btn btn-lg btn-link btn-block ">Registrar</button></a>
+                     <a href="menu.jsp"><button name="btnVolver" class="btn btn-lg btn-link btn-block ">Volver</button></a>
                  </td>
              </tr>
         </table>
